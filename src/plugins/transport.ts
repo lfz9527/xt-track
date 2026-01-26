@@ -10,6 +10,7 @@ const _d_key = '_xt_track'
 export type TransportConfig = {
   api?: string
   domain?: string
+  cacheKey?: string
 }
 
 type Payload = {
@@ -50,6 +51,7 @@ export interface TransportPlugin extends Plugin {
   sendBeacon(event: EventData, payload?: Payload): void
 }
 export class Transport extends BasePlugin implements TransportPlugin {
+  private localKey?: string
   private domain?: string
   config: Readonly<TransportConfig>
   constructor(config: TransportConfig) {
@@ -60,6 +62,7 @@ export class Transport extends BasePlugin implements TransportPlugin {
       ...this.config,
       domain: this.domain,
     })
+    this.localKey = this.config.cacheKey || _d_key
   }
   setup(core: LibCore) {
     this.core = core
@@ -67,12 +70,16 @@ export class Transport extends BasePlugin implements TransportPlugin {
   }
   // 更新设备id
   updateDeviceId(deviceId: string) {
-    Cookie.set(_d_key, deviceId, { domain: this.domain, expires: expiresDate })
-    localStorage.setItem(_d_key, deviceId)
+    Cookie.set(this.localKey!, deviceId, {
+      domain: this.domain,
+      expires: expiresDate,
+    })
+    localStorage.setItem(this.localKey!, deviceId)
   }
   // 获取设备id
   getDeviceId() {
-    let deviceId = Cookie.get(_d_key) || localStorage.getItem(_d_key) || ''
+    let deviceId =
+      Cookie.get(this.localKey!) || localStorage.getItem(this.localKey!) || ''
     // 新设备
     if (!deviceId) {
       this.core?.debug('新设备')
