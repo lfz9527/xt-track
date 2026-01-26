@@ -19,6 +19,9 @@ type Payload = {
   // 当前url
   currentUrl?: string
 
+  // 应用id
+  appId?: string
+
   // 引用来源
   referrer?: string
   // 浏览器语言
@@ -98,6 +101,7 @@ export class Transport extends BasePlugin implements TransportPlugin {
         platformBrowserLanguage: navigator.language,
         platformDeviceId: this.getDeviceId(),
         platformUserAgent: navigator.userAgent,
+        appId: this.core?.config.appId,
         ...payload,
       },
       event: {
