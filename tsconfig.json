@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    // 模块解析策略：采用类似打包工具（bundler）的解析逻辑，不依赖 Node.js 的 module resolution
+    "moduleResolution": "bundler",
+    //  跳过对 .d.ts 类型声明文件的类型检查，加快编译速度
+    "skipLibCheck": true,
+    // 允许导入 JSON 文件（例如 import config from './config.json'）
+    "resolveJsonModule": true,
+    // 允许从没有默认导出的模块中进行默认导入（兼容 CommonJS 模块）
+    "esModuleInterop": true,
+    // 允许对没有默认导出的模块使用默认导入语法
+    "allowSyntheticDefaultImports": true,
+    //  生成对应的 .d.ts 声明文件
+    "declaration": true,
+    "strict": true,
+    // 不输出编译后的 JavaScript 文件
+    "noEmit": true,
+    "baseUrl": ".",
+    "types": ["vitest/globals", "node"]
+  },
+  "include": ["src"]
+}

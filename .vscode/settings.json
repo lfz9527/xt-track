@@ -1,0 +1,16 @@
+{
+  "editor.linkedEditing": true,
+  "editor.fontVariations": false,
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "JetBrains Mono,Consolas, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+
+  // 保存自动修复
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit",
+    "source.fixAll.prettier": "explicit"
+  }
+}
