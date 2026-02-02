@@ -32,7 +32,7 @@
     "vitest": "^4.0.18"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c --verbose",
     "dev": "rollup -c -w",
     "test": "vitest --run --passWithNoTests",
     "test:watch": "vitest",
