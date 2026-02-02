@@ -42,7 +42,7 @@ type EventData = {
   // 事件信息
   eventInfo?: string
   // 触发事件的本地时间
-  localTimeMs?: string
+  localTimeMs?: number
 }
 export type ReportData = {
   payload: Payload
@@ -105,7 +105,7 @@ export class Transport extends BasePlugin implements TransportPlugin {
         ...payload,
       },
       event: {
-        localTimeMs: new Date().toISOString(),
+        localTimeMs: Date.now(),
         ...event,
       },
     }
